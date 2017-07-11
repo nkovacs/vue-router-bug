@@ -1,0 +1,59 @@
+<head>
+    <title>Vue router hash bug</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+
+    <div id="app">
+        <pre>{{ $route.path }}</pre>
+        <pre>{{ $route.hash }}</pre>
+        <button type="button" @click="navigate">Navigate to hash with router</button>
+    </div>
+
+    <script>
+
+var Foo = { template: '<div>foo</div>' }
+var Bar = { template: '<div>bar</div>' }
+
+var routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+
+var router = new VueRouter({
+    mode: 'hash',
+  routes: routes
+})
+
+router.beforeEach(function(to, from, next) {
+    console.log(to)
+    next()
+})
+
+router.afterEach(function() {
+  setTimeout(function() {
+    console.log(window.location.href)
+  }, 0)
+})
+
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  router,
+  methods: {
+    navigate: function() {
+      router.push({
+        path: "/foo",
+        hash: "somehash"
+      })
+    }
+  }
+})
+
+    </script>
+
+
+</body>
