@@ -1,3 +1,4 @@
+<html>
 <head>
     <title>Vue router hash bug</title>
 </head>
@@ -6,8 +7,8 @@
     <script src="https://unpkg.com/vue-router"></script>
 
     <div id="app">
-        <pre>{{ $route.path }}</pre>
-        <pre>{{ $route.hash }}</pre>
+        <p>Path: <pre>{{ $route.path }}</pre></p>
+        <p>Hash: <pre>{{ $route.hash }}</pre></p>
         <button type="button" @click="navigate">Navigate to hash with router</button>
     </div>
 
@@ -57,3 +58,4 @@ new Vue({
 
 
 </body>
+</html>
